@@ -132,7 +132,7 @@ In this lab you'll use these  capabilities can be used to deploy a small legacy 
 5.1 Add the Plants by WebSphere Liberty app template to your OpenShift cluster
 
    ```bash
-   oc create -f openshift/templates/pbw-liberty-template.yaml
+   oc create -f openshift/templates/s2i/pbw-liberty-template.yaml
    ```
 5.2 In your Web console browser tab make sure you're in the **pbw-usernnn** project (top left) and click on **Add to Project -> Browse Catalog** (top right)
 
