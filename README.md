@@ -6,9 +6,9 @@
 
 ## Overview
 
-S2I in a tool deployed in OpenShift that provides a repeatable method to generate application images from source/binary code Templates provide a parameterized set of objects that can be processed by OpenShift. Templates provide a parameterized set of objects that can be processed by OpenShift.
+S2I is a tool deployed in OpenShift that provides a repeatable method to generate application images from source/binary code. Templates provide a parameterized set of objects that can be processed by OpenShift.
 
-In this lab you'll use these  capabilities can be used to deploy a small legacy  Java EE app to OpenShift in a multi-user OpenShift environment
+In this lab you'll use these capabilities to deploy a small legacy Java EE app to OpenShift in a multi-user OpenShift environment
 
 ### Step 1: Logon into the OpenShift Web Console and to the OpenShift CLI
 
@@ -34,7 +34,8 @@ In this lab you'll use these  capabilities can be used to deploy a small legacy 
    ```bash
    export INTERNAL_REG_HOST=`oc get route docker-registry --template='{{ .spec.host }}' -n default`
    ```
-2.3 Create a new OpenShift project for this lab (**Note:** your project name must be unique. We suggest you use `pbw-usernnn` where `usernnn` is your username e.g. `user012`)
+
+2.3 Create a new OpenShift project for this lab (**Note:** your project name must be unique. Combine your lab STUDENT ID with the prefix `pbw-` to create a unique project name like `pbw-usernnn` where `usernnn` is your username e.g. `user012`)
 
    ```bash
    oc new-project pbw-usernnn
@@ -51,6 +52,7 @@ In this lab you'll use these  capabilities can be used to deploy a small legacy 
    ```bash
    docker login -u `oc whoami` -p `oc whoami -t` $INTERNAL_REG_HOST
    ```
+
 2.6 Push the S2I Liberty image to the internal registry
 
    ```bash
@@ -85,19 +87,15 @@ In this lab you'll use these  capabilities can be used to deploy a small legacy 
 
    ![DB values](images/ss5.5.png)
 
-3.7 Scroll down to the **Labels** section and change the **app** label value to `pbw-liberty-mariadb`
+3.7 Click **Next**
 
-   ![App label](images/ss5.6.png)
+3.8 Under **Create a binding for MariaDB (Ephemeral)** select **Create a secret in pbw-usernnn to be used later**
 
-3.8 Click **Next**
-
-3.9 Under **Create a binding for MariaDB (Ephemeral)** select **Create a secret in pbw-usernnn to be used later**
-
-3.10 Click **Create** and then click **Continue to the project overview**
+3.9 Click **Create** and then click **Continue to the project overview**
 
    ![Continue](images/ss6.png)
 
-3.11 Verify that the Pod for the MariaDB deployment eventually shows as running
+3.10 Verify that the Pod for the MariaDB deployment eventually shows as running
 
    ![Pod running](images/ss7.png)
 
@@ -120,6 +118,7 @@ In this lab you'll use these  capabilities can be used to deploy a small legacy 
    ```text
    cd ~
    ```
+
 4.6  From the client terminal window clone the Git repo  with  the following commands  appending the HTTPS URL from your clipboard
 
    ```text
@@ -134,13 +133,18 @@ In this lab you'll use these  capabilities can be used to deploy a small legacy 
    ```bash
    oc create -f openshift/templates/s2i/pbw-liberty-template.yaml
    ```
+
 5.2 In your Web console browser tab make sure you're in the **pbw-usernnn** project (top left) and click on **Add to Project -> Browse Catalog** (top right)
 
    ![View All](images/ss8.png)
 
 5.3 Select the **Other** category and then click **Plants by WebSphere on Liberty**
 
-5.4 Accept all the default values and click **Create**
+5.4 Update the repository url to match your fork of the Plants by Websphere application:
+
+   ![Update Repo](images/ss8.5.png)
+
+5.4 Accept all the remaining default values and click **Create**
 
 5.5 Click  **Continue to the project overview**
 
@@ -162,4 +166,4 @@ In this lab you'll use these  capabilities can be used to deploy a small legacy 
 
 ## Summary
 
-With even small simple apps requiring multiple OpenShift  objects,  templates  greatly simplify the process of distributing OpenShift  apps. S2I allows you to reuse the  same builder image for apps on the same app server, avoiding  the effort of having to create unique images for each app.
+With even small simple apps requiring multiple OpenShift objects, templates greatly simplify the process of distributing OpenShift apps. S2I allows you to reuse the same builder image for apps on the same app server, avoiding the effort of having to create unique images for each app.
