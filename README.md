@@ -24,40 +24,40 @@ In this lab you'll use these capabilities to deploy a small legacy Java EE app t
 
 2.1 Clone the  the WebSphere Liberty S2I image source by issuing the following commands in the terminal window you just used to login via the CLI
 
-   ```bash
+  ```
    git clone https://github.com/IBMAppModernization/s2i-liberty-javaee7.git
    cd s2i-liberty-javaee7
-   ```
+  ```
 
 2.2 Get the hostname of your OpenShift internal registry so you can push images to it
 
-   ```bash
+  ```
    export INTERNAL_REG_HOST=`oc get route docker-registry --template='{{ .spec.host }}' -n default`
-   ```
+  ```
 
 2.3 Create a new OpenShift project for this lab (**Note:** your project name must be unique. Combine your lab STUDENT ID with the prefix `pbw-` to create a unique project name like `pbw-usernnn` where `usernnn` is your username e.g. `user012`)
 
-   ```bash
+  ```
    oc new-project pbw-usernnn
-   ```
+  ```
 
 2.4 Build the S2I Liberty image and tag it appropriately for the internal registry
 
-   ```bash
+  ```
    docker build -t $INTERNAL_REG_HOST/`oc project -q`/s2i-liberty-javaee7:1.0 .
-   ```
+  ```
 
 2.5 Login to the internal registry
 
-   ```bash
+  ```
    docker login -u `oc whoami` -p `oc whoami -t` $INTERNAL_REG_HOST
-   ```
+  ```
 
 2.6 Push the S2I Liberty image to the internal registry
 
-   ```bash
+  ```
     docker push $INTERNAL_REG_HOST/`oc project -q`/s2i-liberty-javaee7:1.0
-   ```
+  ```
 
 ### Step 3: Install MariaDB from the OpenShift template catalog
 
@@ -101,38 +101,26 @@ In this lab you'll use these capabilities to deploy a small legacy Java EE app t
 
 ### Step 4: Clone the Github repo that contains the code for the Plants by WebSphere app
 
-4.1  Login in [your Github account](https://github.com)
+4.1 From your terminal go back to your home directory
 
-4.2  In the search bar at the top left type in `app-modernization-plants-by-websphere-jee6`
-
-  ![Search results](images/ss0.png)
-
-4.3  Select the repository `IBMAppModernization\app-modernization-plants-by-websphere-jee6` and then click on the **Fork** icon
-
-4.4  Click the **Clone or download** button from your copy of the forked repo and copy the HTTPS URL to your clipboard
-
-  ![Clone URL](images/ss00.png)
-
-4.5 From your terminal go back to your home directory
-
-   ```text
+  ```
    cd ~
-   ```
+  ```
 
-4.6  From the client terminal window clone the Git repo  with  the following commands  appending the HTTPS URL from your clipboard
+4.2  From the client terminal window clone the Git repo  with  the following commands
 
-   ```text
-   git clone [HTTPS URL for NEW REPO]
+  ```
+   git clone https://github.com/IBMAppModernization/app-modernization-plants-by-websphere-jee6.git
    cd app-modernization-plants-by-websphere-jee6
-   ```
+  ```
 
 ### Step 5: Install the Plants by WebSphere Liberty app using a template that utilizes S2I to build the app image   
 
 5.1 Add the Plants by WebSphere Liberty app template to your OpenShift cluster
 
-   ```bash
+  ```
    oc create -f openshift/templates/s2i/pbw-liberty-template.yaml
-   ```
+  ```
 
 5.2 In your Web console browser tab make sure you're in the **pbw-usernnn** project (top left) and click on **Add to Project -> Browse Catalog** (top right)
 
@@ -140,11 +128,7 @@ In this lab you'll use these capabilities to deploy a small legacy Java EE app t
 
 5.3 Select the **Other** category and then click **Plants by WebSphere on Liberty**
 
-5.4 Update the repository url to match your fork of the Plants by Websphere application:
-
-   ![Update Repo](images/ss8.5.png)
-
-5.4 Accept all the remaining default values and click **Create**
+5.4 Accept the default values and click **Create**
 
 5.5 Click  **Continue to the project overview**
 
