@@ -8,7 +8,7 @@
 
 S2I in a tool deployed in OpenShift that provides a repeatable method to generate application images from source/binary code Templates provide a parameterized set of objects that can be processed by OpenShift. Templates provide a parameterized set of objects that can be processed by OpenShift.
 
-In this lab you'll use these  capabilities can be used to deploy a small legacy  Java EE app to OpenShift in a multi-user OpenShift environment
+In this lab you'll use these  capabilities can be used to deploy a small legacy  Java EE app to OpenShift in a multi-user OpenShift environment provided for you.
 
 ### Step 1: Logon into the OpenShift Web Console and to the OpenShift CLI
 
