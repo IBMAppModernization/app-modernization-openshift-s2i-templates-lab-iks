@@ -1,8 +1,5 @@
-# IBM Client Developer Advocacy App Modernization Series
 
-## Lab - Migrating Legacy JEE apps to OpenShift in a multi-user lab environment
-
-### Working with S2I and Templates
+## Lab - Working with S2I and Templates
 
 ## Overview
 
