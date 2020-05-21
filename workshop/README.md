@@ -1,5 +1,4 @@
-
-## Lab - Working with S2I and Templates
+# Lab - Working with S2I and Templates
 
 ## Overview
 
