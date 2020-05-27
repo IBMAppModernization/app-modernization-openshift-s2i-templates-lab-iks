@@ -16,7 +16,7 @@ In this lab you'll use these capabilities to deploy a small legacy Java EE app t
 
 1.2 From the OpenShift web console click on your username in the upper right and select **Copy Login Command**
 
-    ![Copy Login Command](images/ss0.png)
+   ![Copy Login Command](images/ss0.png)
 
 1.3 You are prompted to login to the OpenShift console again. Repeat the same login procedure above to login.
 
